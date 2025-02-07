@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+  padding-block: 0;
+  padding-inline: 0;
+  border: 0;
+}
+
+.main-bg {
+  margin-top: 20px;
+  height: 500px;
+  width: 100%;
+  background: url(../src/img/main-bg.jpg) no-repeat center / 90% 500px;
+}
