@@ -3,13 +3,15 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import data from "./data.js";
-import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
-import Detail from "./pages/Detail";
-import About from "./pages/About";
+import Detail from "./pages/Detail.jsx";
+import Cart from "./pages/Cart.jsx";
 
 function App() {
   let [product, setProduct] = useState(data);
+  let [more, setMore] = useState(0);
+
   const navigate = useNavigate(); //hook
 
   return (
@@ -51,30 +53,36 @@ function App() {
         <Route path="/" element={<Main></Main>} />
         <Route path="/detail/:id" element={<Detail product={product} />} />
         <Route path="*" element={<div>없는페이지입니다</div>} />
+        <Route path="/cart" element={<Cart></Cart>}></Route>
       </Routes>
     </div>
   );
 
   function Main() {
     return (
-      <div>
+      <div className="inner-wrap">
         <div className="main-bg"></div>
 
-        <button
-          onClick={() => {
-            console.log("??");
-
-            let copy = [...product];
-            copy.sort((a, b) => a.title.localeCompare(b.title)); // 🔹 title 기준 정렬
-            setProduct(copy);
-          }}
-        >
-          가나다 정렬
-        </button>
         <div className="product-content">
           {product.map(function (a, i) {
-            return <ItemCard product={product[i]} i={i}></ItemCard>;
+            return <ItemCard key={a.id} product={product[i]} i={i}></ItemCard>;
           })}
+        </div>
+
+        <div className="btn-wrap">
+          <button
+            className="filter-btn"
+            onClick={() => {
+              let copy = [...product];
+              copy.sort((a, b) => a.title.localeCompare(b.title)); // 🔹 title 기준 정렬
+              setProduct(copy);
+            }}
+          >
+            가나다 정렬
+          </button>
+          <button className="more-btn" onClick={() => {}}>
+            더보기
+          </button>
         </div>
       </div>
     );

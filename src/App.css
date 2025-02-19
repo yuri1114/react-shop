@@ -27,17 +27,16 @@ button {
 
 .product-content {
   width: 1024px;
-  margin: 50px auto;
+  margin: 50px auto 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
 .item-card {
-  width: calc(100% / 3 - 15px);
-  height: 400px;
+  width: calc(100% / 3 - 20px);
 }
 
 .card {
@@ -55,12 +54,81 @@ button {
   padding: 15px;
 }
 
-.detail {
-  margin: 50px auto;
+.inner-content {
+  width: 1024px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
 }
 
-.detail .text-wrap {
-  text-align: center;
+.detail {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.detail .card {
+  width: 500px;
+  height: 660px;
+}
+
+.hide {
+  display: none;
+}
+
+.btn-primary {
+  display: flex;
+}
+
+.btn-wrap {
+  width: 1024px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-end;
+  padding-top: 30px;
+  margin: 0 auto;
+}
+.filter-btn {
+  width: 100px;
+}
+
+.inner-wrap {
+  width: 100%;
+}
+
+.nav-bar {
+  margin-top: 30px;
+}
+
+.tab {
+  width: 100%;
+  padding: 20px;
+}
+
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+thead {
+  width: 100%;
+  border-bottom: 2px solid #000;
+}
+
+tr {
+  width: 100%;
+}
+
+tr th {
+  width: 25%;
+  max-width: 25%;
 }
 
 @media screen and (max-width: 1024px) {
