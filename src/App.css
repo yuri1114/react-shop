@@ -55,6 +55,14 @@ button {
   padding: 15px;
 }
 
+.detail {
+  margin: 50px auto;
+}
+
+.detail .text-wrap {
+  text-align: center;
+}
+
 @media screen and (max-width: 1024px) {
   .main-bg {
     width: 100%;
