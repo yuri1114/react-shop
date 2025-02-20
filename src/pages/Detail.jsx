@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
+import { addItem } from "./../store.js";
+import { useDispatch } from "react-redux";
 
 function Detail(props) {
   let { id } = useParams();
   let findProduct = props.product.find(function (a) {
     return a.id == id;
   });
+  let [alert, setAlert] = useState(true);
+  let [tab, setTab] = useState(0);
+  let dispatch = useDispatch();
   useEffect(() => {
     let a = setTimeout(() => {
       setAlert(false);
     }, 2000);
   }, []);
-
-  let [alert, setAlert] = useState(true);
-  let [tab, setTab] = useState(0);
 
   return (
     <div className="inner-content">
@@ -32,7 +34,20 @@ function Detail(props) {
           <p className="product-des">{findProduct.content}</p>
           <p className="product-des">{findProduct.price}</p>
 
-          <button className="btn btn-danger">주문하기</button>
+          <button
+            onClick={() => {
+              dispatch(
+                addItem({
+                  id: findProduct.id,
+                  name: findProduct.title,
+                  count: 1,
+                })
+              );
+            }}
+            className="btn btn-danger"
+          >
+            주문하기
+          </button>
         </div>
       </div>
 

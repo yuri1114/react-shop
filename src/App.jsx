@@ -11,7 +11,11 @@ import Cart from "./pages/Cart.jsx";
 function App() {
   let [product, setProduct] = useState(data);
   let [more, setMore] = useState(0);
+  let obj = { name: "kim" };
+  localStorage.setItem("data", JSON.stringify(obj));
+  let 꺼낸거 = localStorage.getItem("data");
 
+  console.log(JSON.parse(꺼낸거).name);
   const navigate = useNavigate(); //hook
 
   return (
