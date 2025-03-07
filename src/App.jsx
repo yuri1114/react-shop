@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -7,15 +7,20 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Detail from "./pages/Detail.jsx";
 import Cart from "./pages/Cart.jsx";
+import Mypage from "./pages/Mypage.jsx";
+import ItemCard from "./components/ItemCard.jsx";
 
 function App() {
+  useEffect(() => {
+    let watched = localStorage.getItem("watched");
+    if (!watched) {
+      localStorage.setItem("watched", JSON.stringify([]));
+    }
+  }, []);
+
   let [product, setProduct] = useState(data);
   let [more, setMore] = useState(0);
-  let obj = { name: "kim" };
-  localStorage.setItem("data", JSON.stringify(obj));
-  let 꺼낸거 = localStorage.getItem("data");
 
-  console.log(JSON.parse(꺼낸거).name);
   const navigate = useNavigate(); //hook
 
   return (
@@ -78,7 +83,7 @@ function App() {
             className="filter-btn"
             onClick={() => {
               let copy = [...product];
-              copy.sort((a, b) => a.title.localeCompare(b.title)); // 🔹 title 기준 정렬
+              copy.sort((a, b) => a.title.localeCompare(b.title));
               setProduct(copy);
             }}
           >
@@ -88,29 +93,8 @@ function App() {
             더보기
           </button>
         </div>
-      </div>
-    );
-  }
 
-  function ItemCard(props) {
-    const navigate = useNavigate();
-
-    return (
-      <div
-        className="item-card"
-        onClick={() => {
-          navigate(`/detail/${props.product.id}`);
-        }}
-      >
-        <div className="card">
-          <img src={"/product" + props.product.id + ".jpg"} />
-        </div>
-        <div className="text-wrap">
-          <p className="product-title">{props.product.id}</p>
-          <p className="product-title">{props.product.title}</p>
-          <p className="product-des">{props.product.content}</p>
-          <p className="product-des">{props.product.price}</p>
-        </div>
+        <Mypage></Mypage>
       </div>
     );
   }

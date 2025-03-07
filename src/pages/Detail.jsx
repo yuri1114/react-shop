@@ -12,6 +12,16 @@ function Detail(props) {
   let [alert, setAlert] = useState(true);
   let [tab, setTab] = useState(0);
   let dispatch = useDispatch();
+
+  useEffect(() => {
+    let 꺼낸거 = localStorage.getItem("watched");
+    꺼낸거 = JSON.parse(꺼낸거);
+    꺼낸거.push(findProduct.id);
+    꺼낸거 = new Set(꺼낸거);
+    꺼낸거 = Array.from(꺼낸거);
+    localStorage.setItem("watched", JSON.stringify(꺼낸거));
+  }, []);
+
   useEffect(() => {
     let a = setTimeout(() => {
       setAlert(false);
